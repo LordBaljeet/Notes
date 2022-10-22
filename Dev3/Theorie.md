@@ -1,26 +1,4 @@
-- [1. Important code](#1-important-code)
-- [2. Start coding](#2-start-coding)
-  - [2.1. main file :](#21-main-file-)
-    - [2.1.1. example :](#211-example-)
-  - [2.2. <span style="color: red;">**⚠ Important!**</span>](#22--important)
-- [3. Operators:](#3-operators)
-  - [3.1. `<<` Operator:](#31--operator)
-  - [3.2. `::` Operator:](#32--operator)
-- [4. C++ file types:](#4-c-file-types)
-  - [4.1. Header files:](#41-header-files)
-  - [4.2. Source files:](#42-source-files)
-- [5. Arithmetic Types:](#5-arithmetic-types)
-  - [5.1. Conversion:](#51-conversion)
-- [6. Error Types:](#6-error-types)
-  - [6.1. Linker Errors:](#61-linker-errors)
-  - [6.2. Compiler Errors:](#62-compiler-errors)
-- [7. Polymorphism:](#7-polymorphism)
-- [8. Default Arguments:](#8-default-arguments)
-- [9. References:](#9-references)
-- [10. Type Inference:](#10-type-inference)
-  - [10.1. auto:](#101-auto)
-  - [10.2. decltype:](#102-decltype)
-- [11. Pointers:](#11-pointers)
+[TOCM]
 
 # 1. Important code
 1. To create an Object file: `g++ -Wall -std=c++20 -pedantic-errors -c 001_empty.cpp`
@@ -57,7 +35,7 @@ int main() {
 
 Note: we can write `using namespace std;` before the `main()` method. That allows as to just write `cout` and `endl` instead of `std::cout` and `std::endl`.
 
-## 2.2. <span style="color: red;">**⚠ Important!**</span>
+## 2.2. &#9888; Important!
 C++ is a very dumb programming language. It only reads your code once, from top to bottom.
 
 That can lead to your program not working if you use call a function that has been written below the call.
@@ -182,7 +160,7 @@ example 1:
         std::cout << "in show : " << i;
     }
 
-This code will generate a <span style = "color: red;">Linker error</span> because the linker did not find the declaration oh the methode `show()` when it read its call.
+This code will generate a Linker error because the linker did not find the declaration oh the methode `show()` when it read its call.
 
 example 2:
 
@@ -193,7 +171,7 @@ example 2:
         count_till(100);
     }
 
-This code will also generate a <span style = "color: red;">Linker error</span>.
+This code will also generate a Linker error.
 
 ## 6.2. Compiler Errors:
 
@@ -212,7 +190,7 @@ example 1:
         show(42);
     }
 
-In this case, the code will generate a <span style = "color: red;">Compiler error</span> because the method `show()` has no body.
+In this case, the code will generate a Compiler error because the method `show()` has no body.
 
 example 2:
 
@@ -228,7 +206,7 @@ example 2:
         show(42);
     }
 
-This code will also generate a <span style = "color: red;">Compiler error</span> because the method `show()` has wrong return value.
+This code will also generate a Compiler error because the method `show()` has wrong return value.
 
 # 7. Polymorphism:
 
@@ -242,7 +220,7 @@ In case of multiple different methods having the same name, the compiler would c
 4. Standart conversion
 5. Conversions defined by user.
 
-⚠ Sometimes, 2 methods are viable to call for the given argument.In this case, a <span style = "color: red;">Compiler error</span> would occur because the compiler can't decide which one to choose.
+&#9888; Sometimes, 2 methods are viable to call for the given argument.In this case, a Compiler error would occur because the compiler can't decide which one to choose.
 
 example :
 
@@ -292,9 +270,9 @@ example 2:
 
 In this case, if the user didn't provide any values as arguments, they are all defaulted to 10. The user can call the method with no arguments and it will run fine.
 
-<span style="color: yellow;">⚠Important</span>
+&#9888; Important
 
-The following code will generate a <span style = "color: red;">Compiler error</span> :
+The following code will generate a Compiler error :
 
     void position(int x=10, int y)
     {
@@ -302,13 +280,13 @@ The following code will generate a <span style = "color: red;">Compiler error</s
         std::cout << "y: " << y << '\n';
     }
 
-You can default either <span style = "color: yellow;"> all of the arguments</span>, or <span style = "color: yellow;"> all except the first one</span>.
+You can default either all of the arguments, or all except the first one.
 
 # 9. References:
 
 In C++, there is the `&` operator. When used in a variable declaration, it makes that variable a reference to another variable.
 
-example: 
+example:
 
     int i = 10;
 
@@ -316,9 +294,9 @@ example:
 
 In this case, `ri` is a reference to `i`, and thus, modifying `ri` would also modify `i`.
 
-<span style="color: yellow;">⚠Important</span>
+&#9888; Important
 
-Just like constants, a reference variable must be instantiated, otherwise it will generate a <span style = "color: red;">Compiler error</span>.
+Just like constants, a reference variable must be instantiated, otherwise it will generate a Compiler error.
 
     int &ri; // error!
 
@@ -346,9 +324,9 @@ example:
 
 In this example, the return value of the method would be calculated and its type would be the type of `a`;
 
-<span style="color: yellow;">⚠Important</span>
+&#9888; Important
 
-The following example would generate a <span style = "color: red;">Compiler error</span>. A variable of type `auto` must be assigned to a value;
+The following example would generate a Compiler error. A variable of type `auto` must be assigned to a value;
 
     auto a;
 
@@ -368,7 +346,7 @@ However, there are some differences between the 2.
 
 # 11. Pointers:
 
-Pointers works the same as [references](#9-references). When you modify a pointer, you also modify the value of the variable that's pointed to by the pointer.
+Pointers works the same as [references](#9. References:). When you modify a pointer, you also modify the value of the variable that's pointed to by the pointer.
 
     int b = 23;
     int * a = b;
@@ -380,7 +358,7 @@ Pointers works the same as [references](#9-references). When you modify a pointe
     cout << a; // prints the adress pointed by a => 100, not its value.
     cout << *a; // prints the value of the adress pointed by a => 23.
 
-<span style="color: yellow;">⚠Important</span>
+&#9888; Important
 
 The following wont work as a reference doesn't have nor points towards an adress, and pointers needs adress to point towards.
 
@@ -396,7 +374,7 @@ The following wont work as a reference doesn't have nor points towards an adress
 
     **c = 10; // => b = 10 => a = 10
 
-<span style="color: yellow;">⚠Important</span>
+&#9888; Important
 
     int a = 23; // adress = 100;
     int *b = a;
