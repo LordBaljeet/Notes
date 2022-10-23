@@ -1,4 +1,4 @@
-[TOCM]
+[TOCM] 0--->
 
 # 1. Important code
 1. To create an Object file: `g++ -Wall -std=c++20 -pedantic-errors -c 001_empty.cpp`
