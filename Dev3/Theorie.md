@@ -1,5 +1,7 @@
 [TOCM]
 
+# Test
+
 # 1. Important code
 1. To create an Object file: `g++ -Wall -std=c++20 -pedantic-errors -c 001_empty.cpp`
 
@@ -35,7 +37,7 @@ int main() {
 
 Note: we can write `using namespace std;` before the `main()` method. That allows as to just write `cout` and `endl` instead of `std::cout` and `std::endl`.
 
-## 2.2. &#9888;�Important!
+## 2.2. &#9888; Important!
 C++ is a very dumb programming language. It only reads your code once, from top to bottom.
 
 That can lead to your program not working if you use call a function that has been written below the call.
@@ -220,7 +222,7 @@ In case of multiple different methods having the same name, the compiler would c
 4. Standart conversion
 5. Conversions defined by user.
 
-&#9888; Sometimes, 2 methods are viable to call for the given argument.In this case, a Compiler error would occur because the compiler can't decide which one to choose.
+&#9888;Â Sometimes, 2 methods are viable to call for the given argument.In this case, a Compiler error would occur because the compiler can't decide which one to choose.
 
 example :
 
@@ -270,7 +272,7 @@ example 2:
 
 In this case, if the user didn't provide any values as arguments, they are all defaulted to 10. The user can call the method with no arguments and it will run fine.
 
-&#9888; Important
+&#9888;Â Important
 
 The following code will generate a Compiler error :
 
@@ -294,7 +296,7 @@ example:
 
 In this case, `ri` is a reference to `i`, and thus, modifying `ri` would also modify `i`.
 
-&#9888; Important
+&#9888;Â Important
 
 Just like constants, a reference variable must be instantiated, otherwise it will generate a Compiler error.
 
@@ -324,7 +326,7 @@ example:
 
 In this example, the return value of the method would be calculated and its type would be the type of `a`;
 
-&#9888; Important
+&#9888;Â Important
 
 The following example would generate a Compiler error. A variable of type `auto` must be assigned to a value;
 
@@ -358,7 +360,7 @@ Pointers works the same as [references](#9. References:). When you modify a poin
     cout << a; // prints the adress pointed by a => 100, not its value.
     cout << *a; // prints the value of the adress pointed by a => 23.
 
-&#9888; Important
+&#9888;Â Important
 
 The following wont work as a reference doesn't have nor points towards an adress, and pointers needs adress to point towards.
 
