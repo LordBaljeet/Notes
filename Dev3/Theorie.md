@@ -15,7 +15,7 @@
 # 2. Start coding
 ## 2.1. main file :
 The main file has a return type of `int` and is called `main()` with no arguments.
-### 2.1.1. example : 
+### 2.1.1. example :
 ```
 #include <iostream>
 
@@ -35,7 +35,7 @@ int main() {
 
 Note: we can write `using namespace std;` before the `main()` method. That allows as to just write `cout` and `endl` instead of `std::cout` and `std::endl`.
 
-## 2.2. &#9888;Â Important!
+## 2.2. &#9888; Important!
 C++ is a very dumb programming language. It only reads your code once, from top to bottom.
 
 That can lead to your program not working if you use call a function that has been written below the call.
