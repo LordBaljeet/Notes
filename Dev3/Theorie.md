@@ -1,7 +1,5 @@
 [TOCM]
 
-#Test 23
-
 # 1. Important code
 1. To create an Object file: `g++ -Wall -std=c++20 -pedantic-errors -c 001_empty.cpp`
 
@@ -37,7 +35,7 @@ int main() {
 
 Note: we can write `using namespace std;` before the `main()` method. That allows as to just write `cout` and `endl` instead of `std::cout` and `std::endl`.
 
-## 2.2. &#9888; Important!
+## 2.2. &#9888; Important!
 C++ is a very dumb programming language. It only reads your code once, from top to bottom.
 
 That can lead to your program not working if you use call a function that has been written below the call.
@@ -272,7 +270,7 @@ example 2:
 
 In this case, if the user didn't provide any values as arguments, they are all defaulted to 10. The user can call the method with no arguments and it will run fine.
 
-&#9888;Â Important
+&#9888;�Important
 
 The following code will generate a Compiler error :
 
@@ -360,7 +358,7 @@ Pointers works the same as [references](#9. References:). When you modify a poin
     cout << a; // prints the adress pointed by a => 100, not its value.
     cout << *a; // prints the value of the adress pointed by a => 23.
 
-&#9888;Â Important
+&#9888;�Important
 
 The following wont work as a reference doesn't have nor points towards an adress, and pointers needs adress to point towards.
 
@@ -390,3 +388,183 @@ The following wont work as a reference doesn't have nor points towards an adress
 
     cout << **c; // value of the adress pointed by b => a;
     **c = 10; // changes the value of the adress pointed by b => changes a.
+
+# Test 1 Correction
+## Find The Error:
+### Code 1)
+```cpp
+int main() {
+	int i();
+	i = -i;
+}
+```
+- **Line:** 3
+- **Type:** Compiler Error
+- **Explanation:**
+
+> `int i()` means that its a function with no body that returns `int` .Thus doing `i = -i`
+is not acceptable by the compiler.
+
+### Code 2)
+```cpp
+int & f(int i) {
+	int d { i / 2 };
+	return d;
+}
+int main() {
+	int e { f(42) };
+}
+```
+- **Line:** 6
+- **Type:** Compiler Error
+- **Explanation:**
+
+> `f()` returns a number that only exist within the function and dies outside of it, so `int e{f(42)}`
+would generate a compiler error.
+
+### Code 3)
+```cpp
+int main() {
+	int a { };
+	int * b { nullptr };
+	*b = -a;
+}
+```
+- **Line:** 4
+- **Type:** Uknown Behaviour
+- **Explanation:**
+
+> `b` points points towards `nullptr`, so `*b = -a` changes the value at the adress pointed by `b` with `-a`. `a` has an unkown value and `b` points towards an unkown value. VERY VERY BAD.
+
+### Code 4)
+```cpp
+namespace dev3 {
+	int f(int i) {
+		return ++i;
+	}
+}
+int main() {
+	f(42);
+}
+```
+- **Line:** 7
+- **Type:** Linker Error
+- **Explanation:**
+
+> `f(42)` has no been declared/implemented in the scope. The Linker doesn't know of it. It wonly knows about `dev3::f(42)`.
+
+### Code 5)
+```cpp
+int main() {
+	int a { 3 };
+	double b { a };
+	long c { a };
+}
+```
+- **Line:** 3
+- **Type:** Compiler Error
+- **Explanation:**
+
+> Cant convert from `int` to `double`.
+
+### Code 6)
+```cpp
+int main() {
+	int a { };
+	int const & b { a };
+	a = b;
+	b = a;
+}
+```
+- **Line:** 5
+- **Type:** Compiler Error
+- **Explanation:**
+
+> `b = a` changes the `adress` pointed by `b` to the value of `a`.
+
+### Code 7)
+```cpp
+int f(int i, int j { 3 }) {
+	return i + j;
+}
+int main() {
+	f(42);
+}
+```
+- **Line:** 1
+- **Type:** Compiler Error
+- **Explanation:**
+
+> `{}` cant be used to create a default parameter value. Only `=` operator can be used in this case.
+
+## Find The Output
+
+### Code 8)
+```cpp
+#include <iostream>
+void f(int) {
+	std::cout << "a ";
+}
+void f(double) {
+	std::cout << "b ";
+}
+int main() {
+	f(4.);
+	f(true);
+}
+```
+
+**Output** :
+
+```cpp
+"b" // Conversion to double
+"a" // Conversion to int
+```
+
+### Code 9)
+```cpp
+#include <iostream>
+void f(int &) {
+	std::cout << "a ";
+}
+void f(const int &) {
+	std::cout << "b ";
+}
+int main() {
+	double a { };
+	f(a);
+	f(double { });
+}
+```
+
+**Output** :
+
+```cpp
+"b"
+"b"
+```
+*Note:* `double` can be converted to `const int` but not `int` for some reason.
+
+### Code 10)
+```cpp
+#include <iostream>
+void f(char & a, char & b) {
+	char & c { b };
+	b = a;
+	a = c;
+}
+int main() {
+	char i { 'a' };
+	char j { 'b' };
+	f(i, j);
+	std::cout << i << " " << j;
+}
+```
+
+**Output** :
+
+```cpp
+"a" "a"
+```
+> Because `c` is a reference and not just a variable, changing `b` would also change `c`.
+
