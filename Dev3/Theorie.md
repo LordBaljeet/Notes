@@ -666,3 +666,36 @@ void A::q(){
 	//Code
 }
 ```
+
+## Static attributs/methods:
+
+Static attributs and methods are declared using the keyword `static`.
+
+- Important! To declare a static attribut/method in a Header file, the use of the keyword `inline` is required to allocate memory to this variable. Otherwise, problems would occur. No need for it however in a Source file.
+
+- To access a public `object` attribut/method: Operator `.`
+```cpp
+C c;
+c.i;
+```
+- To access a public `class` attribut/method: Operator `::`
+```cpp
+C::j; //Will work!
+```
+- You can use the `.` operator on static attributs/methods if you call them through an object:
+```cpp
+C c;
+c.j; //Will work!
+```
+
+## This:
+
+`this` keyword is a pointer of the currrent object and not a reference to it like in java.
+
+To use a method of an object through `this`, the `.` operator will not work. You need to use the `->` operator instead.
+
+```cpp
+this.p(); //Wont work!
+
+this->p(); //Will work!
+```
