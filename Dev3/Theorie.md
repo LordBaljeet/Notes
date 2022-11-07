@@ -220,7 +220,7 @@ In case of multiple different methods having the same name, the compiler would c
 4. Standart conversion
 5. Conversions defined by user.
 
-&#9888;Â Sometimes, 2 methods are viable to call for the given argument.In this case, a Compiler error would occur because the compiler can't decide which one to choose.
+&#9888;Ã‚Â Sometimes, 2 methods are viable to call for the given argument.In this case, a Compiler error would occur because the compiler can't decide which one to choose.
 
 example :
 
@@ -270,7 +270,7 @@ example 2:
 
 In this case, if the user didn't provide any values as arguments, they are all defaulted to 10. The user can call the method with no arguments and it will run fine.
 
-&#9888;�Important
+&#9888; Important
 
 The following code will generate a Compiler error :
 
@@ -294,7 +294,7 @@ example:
 
 In this case, `ri` is a reference to `i`, and thus, modifying `ri` would also modify `i`.
 
-&#9888;Â Important
+&#9888;Ã‚Â Important
 
 Just like constants, a reference variable must be instantiated, otherwise it will generate a Compiler error.
 
@@ -324,7 +324,7 @@ example:
 
 In this example, the return value of the method would be calculated and its type would be the type of `a`;
 
-&#9888;Â Important
+&#9888;Ã‚Â Important
 
 The following example would generate a Compiler error. A variable of type `auto` must be assigned to a value;
 
@@ -358,7 +358,7 @@ Pointers works the same as [references](#9. References:). When you modify a poin
     cout << a; // prints the adress pointed by a => 100, not its value.
     cout << *a; // prints the value of the adress pointed by a => 23.
 
-&#9888;�Important
+&#9888; Important
 
 The following wont work as a reference doesn't have nor points towards an adress, and pointers needs adress to point towards.
 
@@ -568,3 +568,101 @@ int main() {
 ```
 > Because `c` is a reference and not just a variable, changing `b` would also change `c`.
 
+# 12. O.O.
+
+## 12.1. Class
+### 12.1.1 Creation:
+
+```cpp
+class c{
+	int di_;
+	
+	public:
+		int ui_;
+	
+	protected:
+		int oi_;
+	
+	private:
+		int ii_;
+};
+```
+
+- By default, an attribut has an `unknown value`.
+
+- An attribut name must finish with `underscore_`.
+
+- A class without a user-defined constructor is called an Agregat.
+
+- Important! No `new` for instanciation.
+
+- Important! The class block MUST finish with a semicolone `;`.
+
+### 12.1.2. Visibility:
+
+In C++, `attributs` can be of 3 visibility types:
+
+- `public` : Accessible by every other class.
+
+- `protected` : Only accessible to its children.
+
+- `private` : Only accessible in its class. Default visibility if none is provided.
+
+## 12.2. Structures:
+
+### 12.2.1. Creation:
+
+```cpp
+struct s{
+	int di_;
+	
+	public:
+		int ui_;
+	
+	protected:
+		int oi_;
+	
+	private:
+		int ii_;
+};
+```
+- Important! The struct block MUST finish with a semi-colon `;`.
+- > A struct in `C` is a class that has no `methods` but in C++ its just like a `class`.
+
+## 12.2. Difference between a class and a struct:
+
+- The default visibility for a class is `private`.
+- The default visibility for a struct is `public`.
+
+## 12.3. Methods:
+
+2 Ways of implementation:
+
+- In the `Header` file (ugly).
+
+- In the `Source` file (Better).
+
+If a method signature is written in the Header file and then implemented a few lines        under m Its important to use the keyword `inline` before the method name.
+ 
+### Example of implementation in the Header file:
+
+```cpp
+class A{
+	
+	//Implemented directly.
+	void p(){
+		//Code
+	}
+	
+	//Inline very important here.
+	inline void q();
+	
+	//Has no body because it will be implemented in a Source file.
+	void r();
+	
+}; // DONT FORGET THE SEMI-COLON!
+
+void A::q(){
+	//Code
+}
+```
