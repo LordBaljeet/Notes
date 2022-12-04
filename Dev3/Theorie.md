@@ -175,7 +175,7 @@ This code will also generate a Linker error.
 
 ## 6.2. Compiler Errors:
 
-Compiler errors come after linker's errors. They occur when the called method has been declared before, but there is a problem in its body, whether the body does not exist, 
+Compiler errors come after linker's errors. They occur when the called method has been declared before, but there is a problem in its body, whether the body does not exist,
 
 or it is not a working body. They can also occur in case of bad conversion, bad call of a method (too much/few arguments, wrong argument type, etc..) or even syntax errors.
 
@@ -220,7 +220,7 @@ In case of multiple different methods having the same name, the compiler would c
 4. Standart conversion
 5. Conversions defined by user.
 
-&#9888;Ã‚Â Sometimes, 2 methods are viable to call for the given argument.In this case, a Compiler error would occur because the compiler can't decide which one to choose.
+&#9888;Ã‚Â� Sometimes, 2 methods are viable to call for the given argument.In this case, a Compiler error would occur because the compiler can't decide which one to choose.
 
 example :
 
@@ -270,7 +270,7 @@ example 2:
 
 In this case, if the user didn't provide any values as arguments, they are all defaulted to 10. The user can call the method with no arguments and it will run fine.
 
-&#9888; Important
+&#9888;� Important
 
 The following code will generate a Compiler error :
 
@@ -294,7 +294,7 @@ example:
 
 In this case, `ri` is a reference to `i`, and thus, modifying `ri` would also modify `i`.
 
-&#9888;Ã‚Â Important
+&#9888;Ã‚Â� Important
 
 Just like constants, a reference variable must be instantiated, otherwise it will generate a Compiler error.
 
@@ -324,7 +324,7 @@ example:
 
 In this example, the return value of the method would be calculated and its type would be the type of `a`;
 
-&#9888;Ã‚Â Important
+&#9888;Ã‚Â� Important
 
 The following example would generate a Compiler error. A variable of type `auto` must be assigned to a value;
 
@@ -358,7 +358,7 @@ Pointers works the same as [references](#9. References:). When you modify a poin
     cout << a; // prints the adress pointed by a => 100, not its value.
     cout << *a; // prints the value of the adress pointed by a => 23.
 
-&#9888; Important
+&#9888;� Important
 
 The following wont work as a reference doesn't have nor points towards an adress, and pointers needs adress to point towards.
 
@@ -673,6 +673,8 @@ Static attributs and methods are declared using the keyword `static`.
 
 - Important! To declare a static attribut/method in a Header file, the use of the keyword `inline` is required to allocate memory to this variable. Otherwise, problems would occur. No need for it however in a Source file.
 
+- Value set to `0` by default, unlike object attributs who's values are unknown.
+
 - To access a public `object` attribut/method: Operator `.`
 ```cpp
 C c;
@@ -700,4 +702,97 @@ this.p(); //Wont work!
 this->p(); //Will work!
 ```
 
-Test
+## Constructors:
+
+- Just like java, there is a default class constructor.
+- The default constructor doesn't set any values by itself, unless specified.
+
+Example:
+
+```cpp
+class A {
+	//Unknown values
+	int i_;
+	int j_;
+	
+	//0 By default
+	inline static int f_;
+};
+
+class B {
+	//known values
+	int i_{ };
+	int j_{13};
+	
+	//0 By default
+	inline static int f_;
+};
+```
+
+Custom constructor:
+```cpp
+class Z{
+	int i_{-3}; // value never used!
+	
+	public:
+		inline Z(int i);
+	
+	Z::Z(int i) : i_ {i%2 == 0 ? i : i-1} // //Initalisation of arguments
+	{}
+}
+```
+
+- `:i_ {i%2 == 0 ? i : i-1}` sets the values of attributes.
+	- Comes between the constructor signature and its code block.
+	- More preformant because only one read to memory is necessary.
+	- Important: attributes are initialised following their order in the class.
+
+## Getters:
+
+```cpp
+class A{
+	//Attributes
+	...
+	
+	public:
+		int i() const{
+			// getter content
+		}
+};
+```
+
+The `const` keyword in this case means that the object through which the getter is called is a constant.
+
+> Reminder: a class method is called by reference.
+
+# Memory:
+
+## Instanciation:
+- `new double`
+- `new[n] double` with `n` number of reserved cases.
+`new` is a double pointer.
+
+> Memory reserved until deletion by user!
+
+## Deletion:
+- `delete` if no `[]` used.
+- `delete []` if `[]` was used in creation.
+
+> [ ] must be empty.
+
+## Destructor:
+- `~B()` is the destructor of class `B`.
+- Unique
+- One is implemented by default.
+
+# L/R values:
+- `L value` : value that is at left of `=`.
+- `R value` : value that cannot be on the left side of `=`, and thus, can't get its adress.
+
+## Some Examples:
+- Imediat: R.
+- temp: R.
+- anonyme: R.
+- variable: L.
+- simple reference: L.
+- double reference: R.
